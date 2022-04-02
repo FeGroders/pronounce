@@ -28,8 +28,9 @@
 
 This project was developed with the following technologies:
 
--  [Next.js][nextjs]
--  [Styled-Components][styled-components]
+- [Next.js][nextjs]
+- [Styled-Components][styled-components]
+- [Inspirational Quotes][quotes]
 
 ## 📘 How To Use
 
@@ -76,3 +77,4 @@ Made by Fernando Groders 👋🏽 Contact-me! <br/>
 [styled-components]: https://www.styled-components.com/
 [node]: https://nodejs.org/en/
 [yarn]: https://yarnpkg.com/lang/en/docs/install/
+[quotes]: https://github.com/vinitshahdeo/inspirational-quotes

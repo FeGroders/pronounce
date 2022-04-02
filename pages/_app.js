@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     width: 100vw;
     height: 100vh;
+    background-color: black;};
   }
 `
 
@@ -14,6 +15,7 @@ const theme = {
   colors: {
     primary: '#0070f3',
     secondary: '#EFEFEF',
+    grey: '#EFEFEF',
   },
   fonts: {
     primary: '"Roboto", sans-serif',
