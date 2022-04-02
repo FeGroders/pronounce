@@ -1,8 +1,7 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 const Recorder = require('../scripts/recorder');
 const Quote = require('inspirational-quotes');
-const Deepgram = require('../scripts/deepgram');
+import { transcribeAudio } from '../scripts/deepgram';
 
 const Layout = styled.div`
   display: flex;
@@ -77,8 +76,10 @@ const recordAudio = () => {
     audio.play();
 
     //sending url
-    const audioUrl = URL.createObjectURL(audioBlob);
-    Deepgram.transcribeAudio(audioUrl);
+    // const audioUrl = URL.createObjectURL(audio);
+    // Deepgram.transcribeAudio(audioUrl);
+
+    transcribeAudio(audio);
 
     // Deepgram.transcribeAudio(audio);
   }, 3000);
@@ -92,9 +93,10 @@ export default function Home() {
       <Layout>
         <Subtitle>Please, say: </Subtitle>
         <Title>{Quote.getRandomQuote()}</Title>
-        <Link href={"other"}><Button>Change page</Button></Link>
         <ButtonRecord onClick={recordAudio} id="record">Record</ButtonRecord>
       </Layout>
     </>
+
+    
   )
 }
