@@ -1,25 +1,29 @@
 const { Deepgram } = require('@deepgram/sdk');
-import fs from 'fs';
+// require('dotenv').config();
 
 export function transcribeAudio(audio) {
-    const deepgramApiKey = process.env.local.API_DEEPGRAM;    
-    require('dotenv').config();
-    let deepgram = new Deepgram(deepgramApiKey);
-    console.log('transcribeAudio');
-    let source = { url: audio };
+    return new Promise(resolve => {
+        let deepgramApiKey = process.env.API_DEEPGRAM;  
+        let deepgram = new Deepgram(deepgramApiKey);
 
-    deepgram.transcription.preRecorded(
-    source,
-    {
-        punctuate: true
-    }
-    )
-    .then((response) => {
-    console.dir(response, {depth: null});
+        console.log('audio', audio);
+        const audioUrl = URL.createObjectURL(audio.audioBlob);
+        let source = { url: audio.audioUrl };
 
-    console.dir(response.results.channels[0].alternatives[0].transcript, { depth: null });
-    })
-    .catch((err) => {
-    console.log(err);
-    })
+        deepgram.transcription.preRecorded(
+            source,
+            {
+                punctuate: true
+            }
+        )
+        .then((response) => {
+            console.log('response', response);
+            // console.dir(response, {depth: null});
+            // console.dir(response.results.channels[0].alternatives[0].transcript, { depth: null });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        // resolve(response);
+    });
 };

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 const Recorder = require('../scripts/recorder');
 const Quote = require('inspirational-quotes');
 import { transcribeAudio } from '../scripts/deepgram';
+// const Deepgram = require('../scripts/deepgram');
 
 const Layout = styled.div`
   display: flex;
@@ -75,16 +76,17 @@ const recordAudio = () => {
     const audio = await recorder.stop();
     audio.play();
 
-    //sending url
-    // const audioUrl = URL.createObjectURL(audio);
-    // Deepgram.transcribeAudio(audioUrl);
-
-    transcribeAudio(audio);
-
+    await transcribeAudio(audio).then((msg) => {
+      // console.log('retorno:', msg);
+    });
     // Deepgram.transcribeAudio(audio);
   }, 3000);
-  
 })();
+}
+
+function getQuote() {
+  const quote = Quote.getRandomQuote();
+  return quote.quote;
 }
 
 export default function Home() {
@@ -95,8 +97,6 @@ export default function Home() {
         <Title>{Quote.getRandomQuote()}</Title>
         <ButtonRecord onClick={recordAudio} id="record">Record</ButtonRecord>
       </Layout>
-    </>
-
-    
+    </>    
   )
 }
