@@ -1,7 +1,9 @@
+import { flushSync } from 'react-dom';
 import styled from 'styled-components';
 const Recorder = require('../scripts/recorder');
 const Quote = require('inspirational-quotes');
 import { transcribeAudio } from '../scripts/deepgram';
+// import p5 from 'p5'
 // const Deepgram = require('../scripts/deepgram');
 
 const Layout = styled.div`
@@ -74,19 +76,14 @@ const recordAudio = () => {
 
   setTimeout(async () => {
     const audio = await recorder.stop();
-    audio.play();
+    // audio.play();
+    console.log('audio', audio.response);
 
-    await transcribeAudio(audio).then((msg) => {
-      // console.log('retorno:', msg);
-    });
-    // Deepgram.transcribeAudio(audio);
+    // await transcribeAudio(audio.mystream).then((msg) => {
+    //   console.log('retorno:', msg);
+    // });
   }, 3000);
 })();
-}
-
-function getQuote() {
-  const quote = Quote.getRandomQuote();
-  return quote.quote;
 }
 
 export default function Home() {

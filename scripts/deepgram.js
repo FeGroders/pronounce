@@ -1,4 +1,5 @@
 const { Deepgram } = require('@deepgram/sdk');
+// import fs from 'fs';
 // require('dotenv').config();
 
 export function transcribeAudio(audio) {
@@ -7,17 +8,17 @@ export function transcribeAudio(audio) {
         // let deepgram = new Deepgram(deepgramApiKey);
         let deepgram = new Deepgram('03b2845e8725320cf161fe51d695c0dfcec4b38e');
 
-        console.log('audio', audio);
-        // const audioUrl = URL.createObjectURL(audio.audioBlob);
-        let source = { url: audio.audioUrl };
-        console.log('source', source);
-        // let source = { url: audioUrl };
+        let sla = '';
+
+        const source = {
+            buffer: sla,
+            mimetype: 'audio/wav', 
+        };
+
+        // let source = { URL: audio };
 
         deepgram.transcription.preRecorded(
-            {
-                buffer: audio.audioBlob,
-                mimetype: 'audio/wav',
-            },
+            source,
             {
                 punctuate: true
             }
