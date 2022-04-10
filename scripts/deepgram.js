@@ -1,21 +1,20 @@
 const { Deepgram } = require('@deepgram/sdk');
 // import fs from 'fs';
+const { fs } = require('fs');
 // require('dotenv').config();
 
-export function transcribeAudio(audio) {
+export function transcribeAudio() {
     return new Promise(resolve => {
         // let deepgramApiKey = process.env.API_DEEPGRAM;  
         // let deepgram = new Deepgram(deepgramApiKey);
         let deepgram = new Deepgram('03b2845e8725320cf161fe51d695c0dfcec4b38e');
+        const file = '../public/uploads/record.wav';
+        const audio = fs.readFileSync(file);
 
-        let sla = '';
-
-        const source = {
-            buffer: sla,
-            mimetype: 'audio/wav', 
-        };
-
-        // let source = { URL: audio };
+        source = {
+            buffer: audio,
+            mimetype: 'audio/wav',
+        }
 
         deepgram.transcription.preRecorded(
             source,
@@ -24,10 +23,9 @@ export function transcribeAudio(audio) {
             }
         )
         .then((response) => {
-            console.log('response', response);
-            resolve(response);
-            // console.dir(response, {depth: null});
+            console.dir(response, {depth: null});
             // console.dir(response.results.channels[0].alternatives[0].transcript, { depth: null });
+            resolve(response);
         })
         .catch((err) => {
             console.log(err);

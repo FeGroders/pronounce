@@ -76,12 +76,13 @@ const recordAudio = () => {
 
   setTimeout(async () => {
     const audio = await recorder.stop();
-    // audio.play();
-    console.log('audio', audio.response);
 
-    // await transcribeAudio(audio.mystream).then((msg) => {
-    //   console.log('retorno:', msg);
-    // });
+    console.log('audio uploaded', audio.isUploaded);
+    if (audio.isUploaded === true) {
+      await transcribeAudio().then((msg) => {
+        console.log('retorno:', msg);
+      });
+    }
   }, 3000);
 })();
 }
