@@ -1,3 +1,5 @@
+const axios = require('axios').default;
+  
 export function recordAudio() {
     console.log('recordAudio');
 
@@ -21,13 +23,34 @@ export function recordAudio() {
               return new Promise(resolve => {
                 mediaRecorder.addEventListener("stop", () => {
                   const audioBlob = new Blob(audioChunks);
-                  const audioUrl = URL.createObjectURL(audioBlob);
-                  const audio = new Audio(audioUrl);
                   const play = () => {
                     audio.play();
                   };
-    
-                  resolve({ audioBlob, audioUrl, play });
+
+                  let formdata = new FormData(); 
+                  formdata.append('soundBlob', audioBlob, 'record.wav'); 
+                  var serverUrl = 'http://localhost:3030/upload'; 
+                  var httpRequestOptions = {
+                    method: 'POST',
+                    body: formdata , 
+                    headers: new Headers({
+                      'enctype': 'multipart/form-data',
+                    })
+                  };
+
+                  axios.post(serverUrl, formdata, httpRequestOptions)
+                    .then(function (response) {
+                      if (response.status === 200) {
+                        var transcription = response.data;
+                        resolve({ play, isUploaded: true, transcription });
+                      } else {
+                        resolve({ play, isUploaded: false });
+                      }
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                      resolve({ play, isUploaded: false });
+                    });
                 });
     
                 mediaRecorder.stop();
