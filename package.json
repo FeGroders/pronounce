@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "nodemon server && next",
+    "dev": "nodemon server",
     "front": "next",
     "build": "next build",
     "start": "next start"

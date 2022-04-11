@@ -74,6 +74,7 @@ const recordAudio = () => {
     const audio = await recorder.stop();
 
     console.log('audio uploaded', audio.isUploaded);
+    console.log('audio transcription', audio.transcription);
   }, 3000);
 })();
 }
