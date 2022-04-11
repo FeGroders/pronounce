@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  A simple game to practice your English pronunciation.
+  A simple way to practice your English pronunciation.
 </h4>
 
 <p align="center">

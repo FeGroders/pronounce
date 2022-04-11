@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 const Recorder = require('../scripts/recorder');
 const Quote = require('inspirational-quotes');
+import Link from 'next/link';
+
+var quote = '';
+var data = {
+  original: '',
+  transcribed: '',
+};
 
 const Layout = styled.div`
   display: flex;
@@ -11,7 +18,15 @@ const Layout = styled.div`
   height: 100vh;
 `
 
-const Title = styled.h2`
+const Logo = styled.h1`
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 2px 2px #000;
+  margin-bottom: 2rem;
+  color: ${({ theme }) => theme.colors.primary};
+`
+
+const QuoteText = styled.h2`
   font-size: 30px;
   width: 50%;
   text-align: center;
@@ -21,7 +36,7 @@ const Title = styled.h2`
   align-self: center;
 `
 
-const Subtitle = styled.p`
+const Text = styled.p`
   font-size: 25px;
   color: ${({ theme }) => theme.colors.secondary};
   font-family: ${({ theme }) => theme.fonts.primary};
@@ -75,17 +90,34 @@ const recordAudio = () => {
 
     console.log('audio uploaded', audio.isUploaded);
     console.log('audio transcription', audio.transcription);
-  }, 3000);
+
+    data = {
+      original: quote,
+      transcribed: audio.transcription,
+    };
+
+    console.log('data', data);
+  }, 5000);
 })();
+}
+
+function getQuote() {
+  quote = Quote.getRandomQuote();
+  return quote;
 }
 
 export default function Home() {
   return (
     <>
       <Layout>
-        <Subtitle>Please, say: </Subtitle>
-        <Title>{Quote.getRandomQuote()}</Title>
+        <Logo>Pronounce</Logo>
+        <Text>Please, say: </Text>
+        <QuoteText>{getQuote()}</QuoteText> 
         <ButtonRecord onClick={recordAudio} id="record">Record</ButtonRecord>
+        <Button><Link href={{
+            pathname: "/compare",
+            query: data,
+          }}>Confirm</Link></Button>
       </Layout>
     </>    
   )

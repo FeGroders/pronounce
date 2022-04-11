@@ -1,4 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import Head from 'next/head'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -27,6 +28,10 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
+        <Head>
+          <link rel="shortcut icon" href="/favicon.ico" />
+          <title>Pronounce</title>
+        </Head>
         <Component {...pageProps} />
       </ThemeProvider>
     </>
