@@ -56,15 +56,15 @@ const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.secondary};
   }
+  &:disabled {
+    background-color: ${({ theme }) => theme.colors.grey};
+    color: ${({ theme }) => theme.colors.secondary};
+  }
 `
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-
-    &amp;:focus, &amp;:hover, &amp;:visited, &amp;:link, &amp;:active {
-        text-decoration: none;
-    }
-`;
+`
 
 const DiffChar = styled.span`
   color: red;

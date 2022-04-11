@@ -2,6 +2,7 @@ import styled from 'styled-components';
 const Recorder = require('../scripts/recorder');
 const Quote = require('inspirational-quotes');
 import Link from 'next/link';
+import { useState } from 'react';
 
 var quote = '';
 var data = {
@@ -61,6 +62,9 @@ const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.secondary};
   }
+  &:disabled {
+    visibility: hidden;
+  }
 `
 
 const ButtonRecord = styled.button`
@@ -78,43 +82,53 @@ const ButtonRecord = styled.button`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.secondary};
   }
+  &:disabled {
+    background-color: red;
+  }
 `
 
-const recordAudio = () => {
-(async () => {
-  const recorder = await Recorder.recordAudio();
-  recorder.start();
-
-  setTimeout(async () => {
-    const audio = await recorder.stop();
-
-    console.log('audio uploaded', audio.isUploaded);
-    console.log('audio transcription', audio.transcription);
-
-    data = {
-      original: quote,
-      transcribed: audio.transcription,
-    };
-
-    console.log('data', data);
-  }, 5000);
-})();
-}
-
-function getQuote() {
-  quote = Quote.getRandomQuote();
-  return quote;
-}
-
 export default function Home() {
+  const [disable, setDisable] = useState(true);
+  const [recording, setRecording] = useState(false);
+
+  const recordAudio = () => {
+    (async () => {
+      const recorder = await Recorder.recordAudio();
+      recorder.start();
+      setDisable(true);
+      setRecording(true);
+
+      setTimeout(async () => {
+        const audio = await recorder.stop();
+    
+        console.log('audio uploaded', audio.isUploaded);
+        console.log('audio transcription', audio.transcription);
+    
+        data = {
+          original: quote,
+          transcribed: audio.transcription,
+        };
+    
+        setDisable(false);
+        setRecording(false);
+        console.log('data', data);
+      }, 5000);
+    })();
+  };
+        
+  const getQuote = () => {
+    quote = Quote.getRandomQuote();
+    return quote;
+  }
+
   return (
     <>
       <Layout>
         <Logo>Pronounce</Logo>
         <Text>Please, say: </Text>
         <QuoteText>{getQuote()}</QuoteText> 
-        <ButtonRecord onClick={recordAudio} id="record">Record</ButtonRecord>
-        <Button><Link href={{
+        <ButtonRecord disabled={recording} onClick={recordAudio} id="record">Record</ButtonRecord>
+        <Button disabled={disable}><Link disabled={disable} href={{
             pathname: "/compare",
             query: data,
           }}>Confirm</Link></Button>
