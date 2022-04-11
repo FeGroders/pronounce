@@ -1,27 +1,26 @@
 <h1 align="center">
-    Next.js + Styled-Components
-    <br/>Boilerplate
+    Pronounce
 </h1>
 
 <h4 align="center">
-  A simple boilerplate to get you started with Next.js and Styled-Components.
+  A simple game to practice your English pronunciation.
 </h4>
 
 <p align="center">
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/FeGroders/nextjs-styled-components-boilerplate">&nbsp;
-  <a href="https://github.com/fegroders/nextjs-styled-components-boilerplate/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/fegroders/nextjs-styled-components-boilerplate">&nbsp;
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/FeGroders/pronounce">&nbsp;
+  <a href="https://github.com/fegroders/pronounce/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/fegroders/pronounce">&nbsp;
   </a>
-  <a href="https://github.com/fegroders/nextjs-styled-components-boilerplate/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/issues/fegroders/nextjs-styled-components-boilerplate">&nbsp;
+  <a href="https://github.com/fegroders/pronounce/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/fegroders/pronounce">&nbsp;
   </a>
-  <img alt="GitHub" src="https://img.shields.io/github/license/fegroders/nextjs-styled-components-boilerplate">
+  <img alt="GitHub" src="https://img.shields.io/github/license/fegroders/pronounce">
 </p>
 
 <p align="center">
-  <a href="https://github.com/FeGroders/nextjs-styled-components-boilerplate#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/FeGroders/nextjs-styled-components-boilerplate#-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/FeGroders/nextjs-styled-components-boilerplate#-license">License</a>&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/FeGroders/pronounce#-technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/FeGroders/pronounce#-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/FeGroders/pronounce#-license">License</a>&nbsp;&nbsp;&nbsp;
 </p>
 
 ## 🚀 Technologies
@@ -31,6 +30,10 @@ This project was developed with the following technologies:
 - [Next.js][nextjs]
 - [Styled-Components][styled-components]
 - [Inspirational Quotes][quotes]
+- [Axios][axios]
+- [Deepgram][deepgram]
+- [Nodemon][nodemon]
+- [Express][express]
 
 ## 📘 How To Use
 
@@ -44,10 +47,15 @@ $ npm i
 #or
 $ yarn
 
-#To run locally in development mode with live reload:
+# To run the backend server
 $ npm run dev
-# or
+#or
 $ yarn dev
+
+#To run the front end locally in development mode with live reload:
+$ npm run front
+# or
+$ yarn front
 
 #To see the results locally in production mode:
 $ npm run build
@@ -58,7 +66,7 @@ $ yarn start
 ```
 
 ## 📄 License
-This project is under the MIT license. See the [LICENSE](https://github.com/FeGroders/nextjs-styled-components-boilerplate/blob/master/LICENSE) for more information.
+This project is under the MIT license. See the [LICENSE](https://github.com/FeGroders/pronounce/blob/master/LICENSE) for more information.
 
 ## 💻 Author
 
@@ -78,3 +86,7 @@ Made by Fernando Groders 👋🏽 Contact-me! <br/>
 [node]: https://nodejs.org/en/
 [yarn]: https://yarnpkg.com/lang/en/docs/install/
 [quotes]: https://github.com/vinitshahdeo/inspirational-quotes
+[axios]: https://github.com/axios/axios
+[deepgram]: https://deepgram.com/
+[nodemon]: https://www.npmjs.com/package/nodemon
+[express]: https://expressjs.com/
