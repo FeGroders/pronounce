@@ -101,7 +101,7 @@ export default function Home() {
       recorder.start();
       setDisable(true);
       setRecording(true);
-
+        
       setTimeout(async () => {
         const audio = await recorder.stop();
     
@@ -132,7 +132,6 @@ export default function Home() {
         <Text>Please, say: </Text>
         <QuoteText>{getQuote()}</QuoteText> 
         <ButtonRecord disabled={recording} onClick={recordAudio} id="record">Record</ButtonRecord>
-        <Button disabled={!recording} onClick={recordAudio.stop} id="record">Stop</Button>
         <Button disabled={disable}><StyledLink disabled={disable} href={{
             pathname: "/compare",
             query: data,

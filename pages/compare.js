@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import { useRouter } from "next/router";
-import Diff from 'diff';
 
 const Layout = styled.div`
   display: flex;
@@ -64,10 +63,6 @@ const Button = styled.button`
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-`
-
-const DiffChar = styled.span`
-  color: red;
 `
 
 export default function Home() {
