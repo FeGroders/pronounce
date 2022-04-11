@@ -1,10 +1,6 @@
-import { flushSync } from 'react-dom';
 import styled from 'styled-components';
 const Recorder = require('../scripts/recorder');
 const Quote = require('inspirational-quotes');
-import { transcribeAudio } from '../scripts/deepgram';
-// import p5 from 'p5'
-// const Deepgram = require('../scripts/deepgram');
 
 const Layout = styled.div`
   display: flex;
@@ -78,11 +74,6 @@ const recordAudio = () => {
     const audio = await recorder.stop();
 
     console.log('audio uploaded', audio.isUploaded);
-    if (audio.isUploaded === true) {
-      await transcribeAudio().then((msg) => {
-        console.log('retorno:', msg);
-      });
-    }
   }, 3000);
 })();
 }
