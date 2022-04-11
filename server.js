@@ -7,6 +7,7 @@ const port = '3030';
 const cors = require('cors');
 const { Deepgram } = require("@deepgram/sdk");
 
+app.use(cors({origin: '*'}));
 
 app.post('/upload', upload.single('soundBlob'), function (req, res, next) {
   let uploadLocation = __dirname + '/public/uploads/' + req.file.originalname 
