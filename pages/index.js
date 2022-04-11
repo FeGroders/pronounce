@@ -87,6 +87,10 @@ const ButtonRecord = styled.button`
   }
 `
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`
+
 export default function Home() {
   const [disable, setDisable] = useState(true);
   const [recording, setRecording] = useState(false);
@@ -128,10 +132,11 @@ export default function Home() {
         <Text>Please, say: </Text>
         <QuoteText>{getQuote()}</QuoteText> 
         <ButtonRecord disabled={recording} onClick={recordAudio} id="record">Record</ButtonRecord>
-        <Button disabled={disable}><Link disabled={disable} href={{
+        <Button disabled={!recording} onClick={recordAudio.stop} id="record">Stop</Button>
+        <Button disabled={disable}><StyledLink disabled={disable} href={{
             pathname: "/compare",
             query: data,
-          }}>Confirm</Link></Button>
+          }}>Confirm</StyledLink></Button>
       </Layout>
     </>    
   )
