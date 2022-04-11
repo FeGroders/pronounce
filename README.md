@@ -38,6 +38,8 @@ This project was developed with the following technologies:
 ## 📘 How To Use
 
 [Creating a repository from a template][tutorial]
+First of all you need to create a .env file with the following variable:
+API_DEEPGRAM={YOUR API DEEPGRAM}
 
 To start developing, you'll need [Git](https://git-scm.com) and [Node.js][node] or [Yarn][yarn] installed on your computer. From your command line:
 

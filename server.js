@@ -6,6 +6,8 @@ const fs = require('fs');
 const port = '3030';
 const cors = require('cors');
 const { Deepgram } = require("@deepgram/sdk");
+require('dotenv').config()
+const API_DEEPGRAM = process.env.API_DEEPGRAM; 
 
 app.use(cors({origin: '*'}));
 
@@ -14,7 +16,7 @@ app.post('/upload', upload.single('soundBlob'), function (req, res, next) {
   fs.writeFileSync(uploadLocation, Buffer.from(new Uint8Array(req.file.buffer))); 
 
   console.log('uploadLocation', uploadLocation);
-  const deepgramApiKey = '03b2845e8725320cf161fe51d695c0dfcec4b38e';
+  const deepgramApiKey = API_DEEPGRAM;
   const file = uploadLocation;
   const mimetype = 'audio/wav';
   const deepgram = new Deepgram(deepgramApiKey);
